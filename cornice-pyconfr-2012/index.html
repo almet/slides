@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>None</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///home/alexis/dev/github/slides/cornice-pyconfr-2012/impress/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///home/alexis/dev/github/slides/cornice-pyconfr-2012/impress/css/screen.css">
+    
+    
+      
+      <link rel="stylesheet" href="file:///home/alexis/dev/github/slides/cornice-pyconfr-2012/slides.css">
+      
+    
+    <!-- /Styles -->
+
+</head>
+<body>
+<div id="impress" class="impress-not-supported">
+
+    <div class="fallback-message">
+        <p>Your browser <b>doesn't support features required</b> by impress.js, so are presented with simplified version of this presentation.</p>
+        <p>For the best experience please use latest <b>Chrome</b> or <b>Safari</b> browser. Firefox 10 and Internet Explorer 10 <i>should</i> also handle it.</p>
+    </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="6400" data-y="3200"
+                 data-rotate="12" data-scale="2">
+            
+        
+            
+            
+               <section>
+                  <div><p class="center"><strong>Cornice:</strong>
+<strong>Une boite à outils pour services web</strong></p>
+<p class="center">Alexis Métaireau - <a class="reference external" href="mailto:alexis&#64;notmyidea.org">alexis&#64;notmyidea.org</a></p></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  1/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="4800" data-y="2400"
+                 data-rotate="14" data-scale="3">
+            
+        
+            
+               <header><h1><h1>Se faciliter la vie !</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Créer des services web <strong>rapidement</strong></li>
+<li>Ne pas faire les erreurs courantes</li>
+<li>Respecter les <strong>standards HTTP</strong></li>
+</ul></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  2/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="3200" data-y="6400"
+                 data-rotate="36" data-scale="4">
+            
+        
+            
+               <header><h1><h1>Don't</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Services web ≠ Applications web</li>
+<li>Ne fait pas le café</li>
+</ul></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  3/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="1600" data-y="4000"
+                 data-rotate="28" data-scale="5">
+            
+        
+            
+               <header><h1><h1>Erreurs courantes</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Problèmes de sécurité</li>
+<li>mauvaise comprehension de la specification HTTP</li>
+<li>pas de documentation pour le service (ou pas à jour)</li>
+</ul></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  4/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="0" data-y="9600"
+                 data-rotate="60" data-scale="6">
+            
+        
+            
+               <header><h1><h1>En python</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Utilisation des <cite>&#64;decorateurs</cite> python pour avoir un code plus lisible</li>
+<li>Lier le code et la documentaion (docstrings !)</li>
+</ul>
+<pre><span class="kn">from</span> <span class="nn">cornice</span> <span class="kn">import</span> <span class="n">Service</span>
+
+<span class="n">pubs</span> <span class="o">=</span> <span class="n">Service</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;pubs&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&#39;/pubs&#39;</span><span class="p">,</span>
+               <span class="n">description</span><span class="o">=</span><span class="s">&#39;Liste des pubs à Paris&#39;</span><span class="p">)</span>
+
+<span class="n">PUBS</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="nd">@pubs.get</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">pubs_list</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">PUBS</span>
+</pre></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  5/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-1600" data-y="5600"
+                 data-rotate="42" data-scale="7">
+            
+        
+            
+               <header><h1><h1>Validation avec Cornice</h1></h1></header>
+            
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  6/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-3200" data-y="12800"
+                 data-rotate="84" data-scale="1">
+            
+        
+            
+               <header><h1><h1>Utilisation de colander</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Un outil pour faire de la validation de schema</li>
+<li>Voila un exemple pour les pubs:</li>
+</ul>
+<pre><span class="kn">from</span> <span class="nn">colander</span> <span class="kn">import</span> <span class="n">MappingSchema</span><span class="p">,</span> <span class="n">SchemaNode</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">OneOf</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="n">Pub</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;Pub&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;status&#39;</span><span class="p">])</span>
+
+<span class="k">class</span> <span class="nc">PubSchema</span><span class="p">(</span><span class="n">MappingSchema</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">SchemaNode</span><span class="p">(</span><span class="n">String</span><span class="p">(),</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;str&#39;</span><span class="p">)</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">SchemaNode</span><span class="p">(</span><span class="n">String</span><span class="p">(),</span> <span class="nb">type</span><span class="o">=</span><span class="s">&#39;str&#39;</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="n">SchemaNode</span><span class="p">(</span><span class="n">String</span><span class="p">(),</span>
+                        <span class="n">validator</span><span class="o">=</span><span class="n">OneOf</span><span class="p">([</span><span class="s">&#39;open&#39;</span><span class="p">,</span> <span class="s">&#39;close&#39;</span><span class="p">]))</span>
+</pre></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  7/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-4800" data-y="7200"
+                 data-rotate="56" data-scale="2">
+            
+        
+            
+               <header><h1><h1>On branche ça avec cornice</h1></h1></header>
+            
+            
+               <section>
+                  <div><pre><span class="nd">@pub.post</span><span class="p">(</span><span class="n">schema</span><span class="o">=</span><span class="n">PubSchema</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">add_pub</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c"># si on est là, c&#39;est que le schema est validé</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span> <span class="s">&#39;location&#39;</span><span class="p">,</span> <span class="s">&#39;status&#39;</span><span class="p">):</span>
+        <span class="n">args</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">validated</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
+
+    <span class="n">PUBS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Pub</span><span class="p">(</span><span class="o">**</span><span class="n">args</span><span class="p">))</span>
+</pre></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  8/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-6400" data-y="16000"
+                 data-rotate="108" data-scale="3">
+            
+        
+            
+               <header><h1><h1>Un protocole d'échange de données</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Gestion des erreurs</li>
+<li>Utilise un schema particulier</li>
+</ul>
+<p>Par exemple:</p>
+<pre>curl -X POST http://localhost:8080/pubs -d
+    <span class="s2">&quot;{name: &#39;Le folies&#39;,</span>
+<span class="s2">      location:&#39;belleville&#39;,</span>
+<span class="s2">      status: &#39;not-valid&#39;}&quot;</span>
+    -H <span class="s2">&quot;Content-Type: application/json&quot;</span>
+</pre>
+<pre><span class="p">{</span><span class="s1">&#39;status&#39;</span><span class="o">:</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;errors&#39;</span><span class="o">:</span> <span class="p">[{</span><span class="nx">location</span><span class="o">:</span> <span class="s1">&#39;body&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span>
+             <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;status should be one of open, close&#39;</span><span class="p">,</span>
+             <span class="nx">values</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">]}],</span>
+<span class="p">}</span>
+</pre></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  9/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-8000" data-y="800"
+                 data-rotate="70" data-scale="4">
+            
+        
+            
+               <header><h1><h1>Validateurs custom</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>On est pas obligé de valider des schemas colander !</li>
+</ul>
+<pre><span class="k">def</span> <span class="nf">super_validator</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s">&#39;X-YOUR-HEADER&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="s">&#39;header&#39;</span><span class="p">,</span>
+                           <span class="n">name</span><span class="o">=</span><span class="s">&#39;X-YOUR-HEADER&#39;</span><span class="p">)</span>
+
+<span class="nd">@service.post</span><span class="p">(</span><span class="n">validators</span><span class="o">=</span><span class="p">[</span><span class="n">super_validator</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">foobar</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="c"># do something with it.</span>
+</pre></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  10/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-9600" data-y="3200"
+                 data-rotate="132" data-scale="5">
+            
+        
+            
+               <header><h1><h1>Respect de la specification HTTP</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Ressource existante mais mauvais verbe → 405 Method Not Allowed.</li>
+<li>Mauvais content type demandé → 406, Not Acceptable.</li>
+</ul></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  11/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-11200" data-y="2400"
+                 data-rotate="84" data-scale="6">
+            
+        
+            
+               <header><h1><h1>Génération automatique de la documentation</h1></h1></header>
+            
+            
+               <section>
+                  <div><p>Dans sphinx:</p>
+<pre><span class="p">..</span> <span class="ow">services</span><span class="p">::</span>
+   <span class="nc">:modules:</span> <span class="nf">cornice.tests.validationapp</span>
+</pre></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  12/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-12800" data-y="6400"
+                 data-rotate="156" data-scale="7">
+            
+        
+            
+               <header><h1><h1>Relations avec pyramid</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Cornice &lt; 0.9 consruit autour de Pyramid.</li>
+<li>Possibilité d'utiliser un autre framework depuis.</li>
+</ul></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  13/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-14400" data-y="4000"
+                 data-rotate="98" data-scale="1">
+            
+        
+            
+               <header><h1><h1>Retours</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>Beaucoup utilisé à Mozilla Services</li>
+<li>Projet de serveur de tokens</li>
+<li>Sync 2.0</li>
+<li>App In The Clouds</li>
+<li>Retours positifs, permet de &quot;speeder&quot; la création de services web en évitant
+les erreurs courantes.</li>
+</ul></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  14/15
+                </aside>
+            </footer>
+        </div>
+      
+        <!-- slide source: slides.rst -->
+        
+            
+            <div class="step" data-x="-16000" data-y="9600"
+                 data-rotate="180" data-scale="2">
+            
+        
+            
+               <header><h1><h1>Ressources</h1></h1></header>
+            
+            
+               <section>
+                  <div><ul class="simple">
+<li>la documentation de colander: <a class="reference external" href="http://docs.pylonsproject.org/projects/colander/en/latest/">http://docs.pylonsproject.org/projects/colander/en/latest/</a></li>
+<li>la documenation de cornice: <a class="reference external" href="http://cornice.rtfd.org">http://cornice.rtfd.org</a></li>
+<li>le code de cornice: <a class="reference external" href="http://github.com/mozilla-services/cornice">http://github.com/mozilla-services/cornice</a></li>
+<li>la specification HTTP ! <a class="reference external" href="http://pretty-rfc.herokuapp.com/RFC2616">http://pretty-rfc.herokuapp.com/RFC2616</a></li>
+</ul></div>
+               </section>
+            
+            <footer>
+                
+                <aside class="source">
+                  Source: <a href="slides.rst">slides.rst</a>
+                </aside>
+                
+                <aside class="page_number">
+                  15/15
+                </aside>
+            </footer>
+        </div>
+      
+</div>
+<!-- Javascripts -->
+
+<script type="text/javascript" src="file:///home/alexis/dev/github/slides/cornice-pyconfr-2012/impress/js/slides.js"></script>
+
+
+<!-- /Javascripts -->
+</body>
+</html>
