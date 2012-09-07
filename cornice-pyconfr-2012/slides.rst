@@ -252,7 +252,7 @@ Dans sphinx:
 .. code-block:: rst
 
     .. services::
-       :modules: cornice.tests.validationapp
+       :modules: myapp.mymodule.validationapp
 
 ----
 
@@ -359,6 +359,7 @@ Le futur ?
 - Génération d'un format de description de services
 - Meilleure intégration avec d'autres frameworks
 - Faire un client générique pour cornice
+- améliorer la génération de documentation
 
 ----
 
