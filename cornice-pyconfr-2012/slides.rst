@@ -4,7 +4,6 @@
     **Une boite à outils pour services web**
 
     Alexis Métaireau - alexis@notmyidea.org
-===========================================
 
 ----
 
@@ -18,6 +17,14 @@ Se faciliter la vie !
 
 ----
 
+Un service web ?
+================
+
+- Pas besoin de navigateur
+- Plusieurs "user agent" possibles
+
+----
+
 Don't
 =====
 
@@ -26,32 +33,44 @@ Don't
 
 ----
 
+Et les autres ?
+===============
+
+- django-piston, django-tastypie, django-rest-framework (tous liés à django)
+- Quelques toolkits en pyramid
+- Pyramid lui même
+
+----
+
 Erreurs courantes
 =================
 
-.. fx:: bigtitle
+.fx: bigtitle
 
 ----
 
 Faille de sécurité JSON
 =======================
 
-.. code-block:: javascript
+::
 
     # Faille de sécu potentielle sur certain navigateurs
-    [{foo: 'bar', foobar: 'baz'}, {}]
+    def your_view():
+        return [{foo: 'bar', foobar: 'baz'}, {}]
 
-Cornice est sympa et vous tiens au courant::
+Cornice est sympa et vous tiens au courant:
 
-    logger.warn("returning a json array is a potential security "
-             "hole, please ensure you really want to do this. See "
-             "http://wiki.pylonshq.com/display/pylonsfaq/Warnings "
-             "for more info")
+    "returning a json array is a potential security hole, please ensure you really want to do this."
+
+----
 
 WRONG !
 =======
 
-.. code-block::
+::
+
+    > GET /resource
+    < 200 OK
 
     > PUT /resource
     < 404 Not Found
@@ -61,29 +80,18 @@ WRONG !
 GOOD
 ====
 
-.. code-block::
+::
 
     > PUT /resource
     < 405 Method Not Allowed
 
 ----
 
-Documentation …
-===============
-
-----
-
-Outils similaires
-=================
-
-- django-piston, django-tastypie, django-rest-framework (tous liés à django)
-- Pyramid lui même
-
 En python
 =========
 
 - Utilisation des `@decorateurs` python pour avoir un code plus lisible
-- Lier le code et la documentaion (docstrings !)
+- Lier le code et la documentation (docstrings !)
 
 .. code-block:: python
 
@@ -96,6 +104,7 @@ En python
 
     @pubs.get()
     def pubs_list(request):
+        """List all the pubs"""
         return PUBS
 
 ----
@@ -105,16 +114,11 @@ Sous le capot
 
 Qu'est-ce que fait Cornice pour vous ?
 
-- Génère les erreurs HTTP qui vont bien (404, 405, 406) là ou il y à besoin:
-    - enregistre les routes qui vont bien pour les méthodes non définies par
-      cette ressource
-    - ajoute des décorateurs pour vérifier que le content-type demandé est
-      acceptable.
-    - gère les erreurs applicatives
-    - ajoute quelques utilitaires dans l'object requests.
+- Génère les erreurs HTTP qui vont bien (404, 405, 406)
 - Génère la documentation du service pour vous
-- Ajoute les validateurs et les filtres par default, ou ceux définis dans votre
-  config.
+- Validateurs et Filtres par défaut
+
+----
 
 Validation avec Cornice
 =======================
@@ -157,7 +161,7 @@ On branche ça avec cornice
             args[item] = request.validated[item]
         args['slug'] = slugify(args['name'])
 
-        pub = Pub(**args))
+        pub = Pub(**args)
         PUBS[pub.slug] = pub
 
 ----
@@ -167,7 +171,7 @@ Un protocole d'échange de données
 
 - Gestion des erreurs
 - Utilise un schema particulier
-- machine readable !
+- machine parsable !
 
 Par exemple:
 
@@ -179,7 +183,7 @@ Par exemple:
              status: 'not-valid'}"
         -H "Content-Type: application/json"
 
-.. code-block:: javascript
+::
 
     {'status': 'error',
      'errors': [{location: 'body', name: 'status',
@@ -207,18 +211,10 @@ Validateurs custom
 
 ----
 
-Respect de la specification HTTP
-================================
+Accept
+======
 
-- Ressource existante mais mauvais verbe → 405 Method Not Allowed.
-- Mauvais content type demandé → 406, Not Acceptable.
-
-----
-
-Par exemple…
-============
-
-.. code-block::
+.. code-block:: python
 
     pub = service('pub', path='/pub/{slug}')
 
@@ -229,16 +225,13 @@ Par exemple…
 
 ----
 
-Accept types
-============
+::
 
-.. code-block::
-
-    > POST -H 'Accept: application/json' urlkivabien
+    > GET -H 'Accept: application/json' urlkivabien
     < Content-Type: "application/json"
     < Réponse en JSON
 
-    > POST -H 'Accept: audio/*' urlkivabien
+    > GET -H 'Accept: audio/*' urlkivabien
     < 406 Not Acceptable
     < Acceptable = ['application/json', 'text/json', 'text/plain']
 
@@ -251,17 +244,22 @@ Dans sphinx:
 
 .. code-block:: rst
 
+    My super service
+    ================
+
+    Voila le service qui permet de lister
+    les bières à paris, d'en ajouter etc.
+
     .. services::
-       :modules: myapp.mymodule.validationapp
+       :modules: myapp.pubs
 
 ----
 
 Définir des ressources
 ======================
 
-.. code-block::
 
-Définir des ressources
+.. code-block:: python
 
     from cornice.resource import resource, view
 
@@ -271,30 +269,30 @@ Définir des ressources
         def __init__(self, request):
             self.request = request
 
+                                                 # GET /pubs
         def collection_get(self):
             return {'pubs': PUBS.values()}
 
+                                          # GET /pubs/{slug}
         @view(renderer='json')
-        def get(self):
+        def get(self):                   
             return PUBS.get(self.request.matchdict['slug'])
 
+                                                # POST /pubs
         @view(renderer='json', accept='text/json')
-        def collection_post(self):
+        def collection_post(self):             
             # ce qu'on avait toute à l'heure
-
-Merci Gawel !
 
 ----
 
 Quelques autres options
 =======================
 
-.. code-blokc:: python
+.. code-block:: python
 
-    @service.post(**options)
+    @service.method(**options)
 
 - filters (callable)
-- accept (liste de content types)
 - acl (callable)
 - ACL factory (callable)
 - error_handler (callable)
@@ -304,20 +302,6 @@ Quelques autres options
 
 Un outil de description
 =======================
-
-.. code-block:: python
-
-    from cornice import Service
-
-    def my_validator(request):
-        return "yeah"
-
-    foobar = Service('foobar', path='/foobar', description='Super foobar description')
-
-    @foobar.get(validators=(my_validator,), accept=('text/json'), renderer='json')
-    @foobar.get(validators=(my_validator,), accept=('text/plain'))
-    def my_view(request):
-        return 'yes'
 
 .. code-block:: python
 
@@ -356,10 +340,10 @@ Retours
 Le futur ?
 ==========
 
-- Génération d'un format de description de services
+- Format de description de WS → Client générique
 - Meilleure intégration avec d'autres frameworks
-- Faire un client générique pour cornice
-- améliorer la génération de documentation
+- Améliorer la génération de documentation
+- Vos patchs ?
 
 ----
 
@@ -376,4 +360,4 @@ Ressources
 Merci !
 =======
 
-..fx:: big-title
+.fx: bigtitle
