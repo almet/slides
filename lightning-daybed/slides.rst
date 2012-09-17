@@ -4,7 +4,6 @@ Daybed !
 * Un service de validation de modèles
 * En REST !
 
-.. image:: logo_afpy.png
 
 ----
 

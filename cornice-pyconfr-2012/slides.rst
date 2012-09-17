@@ -1,9 +1,9 @@
-.. class:: center
+Cornice
+=======
 
-    **Cornice:**
-    **Une boite à outils pour services web**
+Une boite à outils pour services web
 
-    Alexis Métaireau - alexis@notmyidea.org
+Alexis Métaireau - alexis@notmyidea.org
 
 ----
 
