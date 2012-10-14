@@ -3,7 +3,8 @@ Cornice
 
 A toolkit for web services
 
-Alexis Métaireau - alexis@mozilla.com
+Alexis Métaireau
+alexis@mozilla.com
 
 ----
 
@@ -230,7 +231,7 @@ Accept
 
     > GET -H 'Accept: application/json' url
     < Content-Type: "application/json"
-    < Réponse en JSON
+    < JSON response
 
     > GET -H 'Accept: audio/*' url
     < 406 Not Acceptable
@@ -342,7 +343,6 @@ What's in the future?
 - Description format for the Web Services →  Generic Client.
 - Better integration with other frameworks
 - Enhance automatic documentation generation.
-- Améliorer la génération de documentation
 - Your patches?
 
 ----
