@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html lang="en-US" class="fade">
+
+<head>
+  <title>Python tips and tricks - FOSDEM, Feb. 2013</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1274, user-scalable=no">
+  <link rel="stylesheet" href="themes/mozilla/styles/style.css">
+  <style type="text/css">
+    /* Add your own styles here */
+  </style>
+</head>
+<body class="list">
+
+  <header class="caption">
+    <h1>Python tips and tricks</h1>
+    <p class="footer">Alexis Métaireau, <a href="mailto:">alexis@notmyidea.org</a></p>
+  </header>
+
+  <div id="tags" class="slide cover h"><div>
+    <section>
+    <img src="tags.png"></img>
+    </section>
+  </div></div>
+
+  <div id="me" class="slide"><div>
+    <section>
+      <header>
+        <h2>/whoami</h2>
+      </header>
+      Alexis Métaireau / <a href'mailto:alexis@notmyidea.org'>alexis@notmyidea.org</a>
+    </section>
+  </div></div>
+
+  <div id="strings" class="slide"><div>
+    <section>
+      <header>
+        <h2>Strings</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; 'hackers gonna hack'<mark>.partition(' ')</mark></code>
+        <code>&gt;&gt;&gt; 'hackers gonna hack'.split(' ', 1)</code>
+        <code>&gt;&gt;&gt; 'hackers gonna hack'.startswith(<mark>('hackers', 'haters')</mark>)</code>
+        <code>&gt;&gt;&gt; 'hackers gonna hack'.endswith(<mark>('hack', 'hate')</mark>)</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="intern" class="slide"><div>
+    <section>
+      <header>
+        <h2>Strings & memory</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt;c1 = get('http://blog.notmyidea.org').content</code>
+        <code>&gt;&gt;&gt;c2 = get('http://blog.notmyidea.org').content</code>
+        <code>&gt;&gt;&gt;id(c1)                                       </code>
+        <code>23199712                                     </code>
+        <code>&gt;&gt;&gt;id(c2)                                       </code>
+        <code>23251776                                     </code>
+        <code>&gt;&gt;&gt;id(<mark>intern(c1)) == id(intern(c2))             </code>
+        <code>True                                         </code>
+      </pre>
+      Thanks <a href="http://twitter.com/_olivier_">@_olivier_</a> for the tip.
+    </section>
+  </div></div>
+
+  <div id="sets" class="slide"><div>
+    <section>
+      <header>
+        <h2>Working with sets</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt;</code>
+        <code>&gt;&gt;&gt; vowels = set(<mark>'aeiouy'</mark>)</code>
+        <code>&gt;&gt;&gt; consonants = set(string.ascii_lowercase) <mark>-</mark> vowels</code>
+        <code>&gt;&gt;&gt; consonants</code>
+        <code>set(['c', 'b', 'd', 'g', 'f', 'h', 'k', 'j', 'm', 'l', 'n', 'q', 'p', 's ', 'r', 't', 'w', 'v', 'x', 'z'])</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="enumerate" class="slide"><div>
+    <section>
+      <header>
+        <h2>Enumerate</h2>
+      </header>
+        <pre>
+            <code>&gt;&gt;&gt; list(enumerate('this'))</code>
+            <code>[(0, 't'), (1, 'h'), (2, 'i'), (3, 's'),]</code>
+        </pre>
+      <pre>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="dict-comprehensions" class="slide"><div>
+    <section>
+      <header>
+        <h2>Dicts comprehensions (Since 2.7)</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; <mark>{</mark>key<mark>:</mark> value <mark>for</mark> key, value <mark>in</mark> items<mark>}</mark></code>
+        <code>&gt;&gt;&gt; {string.ascii_lowercase[v]: k for</code>
+        <code>...  k,v in enumerate(range(10))}</code>
+        <code>{'a': 0, 'c': 2, 'b': 1, 'e': 4, 'd': 3}</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="slices" class="slide"><div>
+    <section>
+      <header>
+        <h2>Slices</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; range(10)[::2]</code>
+        <code>[0, 2, 4, 6, 8]</code>
+        <code>&gt;&gt;&gt; range(10)[<mark>1</mark>::<mark>2</mark>]</code>
+        <code>[1, 3, 5, 7, 9]</code>
+        <code>&gt;&gt;&gt; range(10)[::<mark>-1</mark>]</code>
+        <code>[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</code>
+        <code>&gt;&gt;&gt; odd = slice(None, None, 2)</code>
+        <code>&gt;&gt;&gt; range(10)[odd]</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="collections-named-tuples" class="slide"><div>
+    <section>
+      <header>
+        <h2>Named tuples</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; from collections import namedtuple</code>
+        <code>&gt;&gt;&gt; Beer = namedtuple('Beer', ('name', 'type', 'level'))</code>
+        <code>&gt;&gt;&gt; Beer('Tripel Karmeliet', 'high fermentation', '8.4%')</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="collections-counters" class="slide"><div>
+    <section>
+      <header>
+        <h2>Counters</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; from collections import Counter</code>
+        <code>&gt;&gt;&gt; sandwich = ('spam', 'bacon', 'spam', 'spam', 'egg', 'bacon', 'spam')</code>
+        <code>&gt;&gt;&gt; Counter(sandwich)</code>
+        <code>Counter({'spam': 4, 'bacon': 2, 'egg': 1})</code>
+        <code>&gt;&gt;&gt; Counter(sandwich).most_common(2)</code>
+        <code>[('spam', 4), ('bacon', 2)]</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="collections-defaultdict" class="slide"><div>
+    <section>
+      <header>
+        <h2>Default dicts</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; listdict = <mark>defaultdict(list)</mark></code>
+        <code>&gt;&gt;&gt; listdict['sandwich'].append('spam')</code>
+        <code>&gt;&gt;&gt; listdict = defaultdict(<mark>CustomType</mark>)</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="iterators" class="slide"><div>
+    <section>
+      <header>
+        <h2>Iterators</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; iter(callable, sentinel)</code>
+        <code>&gt;&gt;&gt; for data in iter(partial(fileobj.read, BLOCKSIZE), ''):</code>
+        <code>&gt;&gt;&gt; ... # do something</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="iterators-py3k" class="slide"><div>
+    <section>
+      <header>
+        <h2>… and in py3k</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; first, *rest = ('spam', 'egg', 'spam', 'spam', 'bacon')</code>
+        <code>first == 'spam'</code>
+        <code>rest == ('egg', 'spam', 'spam', 'bacon')</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="functools-partial" class="slide"><div>
+    <section>
+      <header>
+        <h2>functools partial (since 2.5)</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; def add(a, b):</code>
+        <code>&gt;&gt;&gt; ... return a + b</code>
+        <code>&gt;&gt;&gt; add2 = <mark>functools.partial(add, 2)</mark></code>
+        <code>&gt;&gt;&gt; add2(4)</code>
+        <code>6</code>
+        
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="functools-ordering" class="slide"><div>
+    <section>
+      <header>
+        <h2>Functools (since 2.7)</h2>
+      </header>
+      <pre>
+        <code><mark>@total_ordering</mark></code>
+        <code>class Student:</code>
+        <code>    def __eq__(self, other):</code>
+        <code>        return False or True</code>
+        <code>    def __lt__(self, other):</code>
+        <code>        return False or True</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="functions-annotation" class="slide"><div>
+    <section>
+      <header>
+        <h2>Function annotation in py3k</h2>
+      </header>
+      <pre>
+        <code>def function(spam:int, egg:str):</code>
+        <code>... pass</code>
+        <code>function.__annotations__</code>
+        <code>{'spam': <class 'int'>, 'egg': <class 'str'>}</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="context-lib" class="slide"><div>
+    <section>
+      <header>
+        <h2>Contextlib (or how to make good use of "with")</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; from contextlib import <mark>contextmanager</mark></code>
+        <code>&gt;&gt;&gt; @contextmanager</code>
+        <code>&gt;&gt;&gt; def timeit(message):</code>
+        <code>&gt;&gt;&gt; ... t1 = datetime.now()</code>
+        <code>&gt;&gt;&gt; ... yield</code>
+        <code>&gt;&gt;&gt; ... print "%s in %s" % (message, datetime.now() - t1)</code>
+      </pre>
+      <footer class="notes">This is for the example, don't time your functions like this.</footer>
+    </section>
+  </div></div>
+
+  <div id="context-lib2" class="slide"><div>
+    <section>
+      <pre>
+        <code>&gt;&gt;&gt; with timeit("zip of ranges"):</code>
+        <code>&gt;&gt;&gt; ... zip(range(10000), range(1000)[::-1])</code>
+      </pre>
+      … and since python 3, 
+      <pre>
+        <code>&gt;&gt;&gt; @timeit("zip of ranges")</code>
+        <code>&gt;&gt;&gt; def do_something()</code>
+        <code>&gt;&gt;&gt; ... # operation here</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="descriptors-class-property" class="slide"><div>
+    <section>
+      <pre>
+        <code>class classproperty(object):</code>
+        <code>    def __init__(self, getter):</code>
+        <code>        self.getter = getter</code>
+        <code>    def __get__(self, instance, owner):</code>
+        <code>        return self.getter(owner)</code>
+      </pre><pre>
+        <code>class MyClass(object):</code>
+        <code>    @classproperty</code>
+        <code>    def tagname(cls):</code>
+        <code>        return "data-%s" % cls.__name__</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="easter-eggs" class="slide"><div>
+    <section>
+      <header>
+        <h2>The time machine</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; import this</code>
+        <code>&gt;&gt;&gt; from __future__ import braces</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="antigravity" class="slide"><div>
+    <section>
+      <header>
+        <h2>antigravity</h2>
+      </header>
+      <pre>
+        <code>&gt;&gt;&gt; import antigravity</code>
+      </pre>
+    </section>
+  </div></div>
+
+  <div id="xkcd-antigravity" class="slide cover h"><div>
+    <section>
+      <img src="python.png" class="middle" alt="">
+      <small class="credits">
+        <a href="http://xkcd.com/353/">Photo by XKCD</a>
+      </small>      
+      <footer class="notes">
+      </footer>
+    </section>
+  </div></div>
+
+  <div id="thankx" class="slide shout"><div>
+    <section>
+    <header><h2>Thanks!</h2></header>
+    </section>
+  </div></div>
+
+  <div class="progress"><div></div></div>
+  <!-- 
+    ^ don't like a progress bar? just delete this DIV
+  -->
+  <script src="scripts/script.js"></script>
+  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>
