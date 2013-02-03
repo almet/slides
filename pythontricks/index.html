@@ -278,9 +278,9 @@
       </header>
       <pre>
         <code>class classproperty(object):</code>
-        <code>    def __init__(self, getter):</code>
+        <code>    <mark>def __init__(self, getter)</mark>:</code>
         <code>        self.getter = getter</code>
-        <code>    def __get__(self, instance, owner):</code>
+        <code>    def <mark>__get__(self, instance, owner)</mark>:</code>
         <code>        return self.getter(owner)</code>
       </pre><pre>
         <code>class MyClass(object):</code>
@@ -288,6 +288,7 @@
         <code>    def tagname(cls):</code>
         <code>        return "data-%s" % cls.__name__</code>
       </pre>
+      <footer class="notes">Here I'm demoing the use of descriptors in conjonction with decorators. Tricky, but fun. The class "classproperty" is being called with the "tagname" method as the first argument, so as the getter.</footer>
     </section>
   </div></div>
 
