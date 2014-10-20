@@ -1,0 +1,25 @@
+From dca98ec25876822e2864b909c94ce96aa2f2870e Mon Sep 17 00:00:00 2001
+From: Quentin Pradet <quentin.pradet@gmail.com>
+Date: Mon, 4 Feb 2013 13:37:47 +0100
+Subject: [PATCH] HTML entities in function annotations
+
+---
+ pythontricks/index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pythontricks/index.html b/pythontricks/index.html
+index 59311fb..3422dba 100644
+--- a/pythontricks/index.html
++++ b/pythontricks/index.html
+@@ -248,7 +248,7 @@
+         <code>def function(spam:int, egg:str):</code>
+         <code>... pass</code>
+         <code>function.__annotations__</code>
+-        <code>{'spam': <class 'int'>, 'egg': <class 'str'>}</code>
++        <code>{'spam': &lt;class 'int'&gt;, 'egg': &lt;class 'str'&gt;}</code>
+       </pre>
+     </section>
+   </div></div>
+-- 
+1.8.1.2
+
