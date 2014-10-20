@@ -1,0 +1,15 @@
+{
+  "name": "Novaplanet",
+  "description": "Nova la nuit, mais pendant la journée.",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/img/icon-128.png"
+  },
+  "developer": {
+    "name": "Alexis",
+    "url": "http://notmyidea.org"
+  },
+  "default_locale": "fr",
+  "fullscreen": "true",
+  "audio-channel-content": {}
+}

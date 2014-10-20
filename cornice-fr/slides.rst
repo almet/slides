@@ -1,14 +1,12 @@
-Cornice
+Cornice 
 =======
 
-Une boite à outils pour services web
-
-Alexis Métaireau - alexis@notmyidea.org
+.fx: bigtitle
 
 ----
 
-Se faciliter la vie !
-=====================
+Pour se faciliter la vie
+========================
 
 - Créer des services web **rapidement**
 - Ne pas faire les erreurs courantes
@@ -22,6 +20,7 @@ Un service web ?
 
 - Pas besoin de navigateur
 - Plusieurs "user agent" possibles
+- HTTP !
 
 ----
 
@@ -37,7 +36,7 @@ Et les autres ?
 ===============
 
 - django-piston, django-tastypie, django-rest-framework (tous liés à django)
-- Quelques toolkits en pyramid
+- Quelques toolkits existent en pyramid
 - Pyramid lui même
 
 ----
@@ -55,12 +54,12 @@ Faille de sécurité JSON
 ::
 
     # Faille de sécu potentielle sur certain navigateurs
-    def your_view():
+    def your_view(request):
         return [{foo: 'bar', foobar: 'baz'}, {}]
 
 Cornice est sympa et vous tiens au courant:
 
-    "returning a json array is a potential security hole, please ensure you really want to do this."
+    "Euh, mais c'est pas très sécure ça, retourner un array JSON est une faille potentiel, mec !"
 
 ----
 
@@ -98,13 +97,13 @@ En python
     from cornice import Service
 
     pubs = Service(name='pubs', path='/pubs',
-                   description='Liste des pubs à Paris')
+                   description='Liste des bars à Paris')
 
     PUBS = {}
 
     @pubs.get()
     def pubs_list(request):
-        """List all the pubs"""
+        """Retourne la liste des bars parisiens."""
         return PUBS
 
 ----
@@ -114,9 +113,9 @@ Sous le capot
 
 Qu'est-ce que fait Cornice pour vous ?
 
-- Génère les erreurs HTTP qui vont bien (404, 405, 406)
+- Génère les erreurs HTTP qui vont bien (404, 405, 406 etc.)
 - Génère la documentation du service pour vous
-- Validateurs et Filtres par défaut
+- Ajoute des "validateurs" et "filtres" par défaut
 
 ----
 
@@ -131,7 +130,7 @@ Utilisation de colander
 =======================
 
 - Un outil pour faire de la validation de schema
-- Voila un exemple pour les pubs:
+- Voila un exemple pour les bars:
 
 .. code-block:: python
 
@@ -150,9 +149,6 @@ On branche ça avec cornice
 
 .. code-block:: python
 
-    from collections import namedtuple
-    Pub = namedtuple('Pub', ['name', 'location', 'status', 'slug'])
-
     @pubs.post(schema=PubSchema)
     def add_pub(request):
         # si on est là, c'est que le schema est validé
@@ -161,8 +157,7 @@ On branche ça avec cornice
             args[item] = request.validated[item]
         args['slug'] = slugify(args['name'])
 
-        pub = Pub(**args)
-        PUBS[pub.slug] = pub
+        PUBS[pub.slug] = Pub(**args)
 
 ----
 
@@ -171,7 +166,7 @@ Un protocole d'échange de données
 
 - Gestion des erreurs
 - Utilise un schema particulier
-- machine parsable !
+- Compréhensible par des machines !
 
 Par exemple:
 
@@ -255,6 +250,43 @@ Dans sphinx:
 
 ----
 
+Gestion du Cross Origin
+=======================
+
+.. code-block:: python
+    
+    >>> cors_policy = {'origins': ('notmyidea.org',),
+    ...                'max_age': 42,
+    ...                'credentials': True}
+    >>> service = Service(name='', path='/service',
+                          cors_policy=cors_policy)
+
+----
+
+Ou même
+=======
+
+.. code-block:: python
+
+    from cornice.service import Service
+    Service.cors_origins = ('*', )
+
+----
+
+Support de SPORE
+================
+
+- OH: "WSDL pour les services REST"
+
+.. code-block:: python
+
+    from cornice.service import get_services
+    generate_spore_description(get_services(), 'Service name', request.application_url, '1.0')
+
+- 
+
+----
+
 Définir des ressources
 ======================
 
@@ -294,7 +326,6 @@ Quelques autres options
 
 - filters (callable)
 - acl (callable)
-- ACL factory (callable)
 - error_handler (callable)
 - exclude (list of validators / filters)
 
@@ -308,19 +339,13 @@ Un outil de description
     >>> from cornice.service import get_services
     >>> get_services()
     [<Service foobar at /foobar>]
+
     >>> service = get_services()[0]
     >>> service.get_acceptable('get')
     ['text/plain', 'text/json']
+
     >>> service.get_validators('get')
     [<function my_validator at 0xa7ccb1c>]
-
-----
-
-Relations avec Pyramid
-======================
-
-- Cornice < 0.9 construit autour de Pyramid.
-- Possibilité d'utiliser un autre framework depuis.
 
 ----
 
@@ -328,22 +353,12 @@ Retours
 =======
 
 - Beaucoup utilisé à Mozilla Services
+- location.services.mozilla.com
 - Projet de serveur de tokens
 - Sync 2.0
-- App In The Clouds
-
+- Daybed
 - Retours positifs, permet de "speeder" la création de services web en évitant
   les erreurs courantes.
-
-----
-
-Le futur ?
-==========
-
-- Format de description de WS → Client générique
-- Meilleure intégration avec d'autres frameworks
-- Améliorer la génération de documentation
-- Vos patchs ?
 
 ----
 
