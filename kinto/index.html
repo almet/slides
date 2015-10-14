@@ -247,6 +247,19 @@ Nous sommes l'équipe «stockage» chez Mozilla
 ![](./images/concepts-permissions.png)
 </template>
 
+<template layout="code" type="text/x-markdown">
+## Exemple de client Kinto.js
+
+```js
+const tasks = new Kinto({
+  remote: "https://kinto.dev.mozaws.net/v1"
+}).collection("tasks");
+
+tasks.add({label: "First item", done: false})
+     .then(function() { tasks.sync() });
+```
+</template>
+
 <template layout="bullets" type="text/x-markdown">
 
 ## Démonstration
