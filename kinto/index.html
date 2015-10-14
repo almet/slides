@@ -1,0 +1,366 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kinto - Une base de données pour le web</title>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./dist/monokai_sublime.min.css">
+  <link rel="stylesheet" href="./dist/mozilla.css">
+</head>
+<body>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/intro.jpg"
+          backface-filter="brightness(.9)">
+
+# Kinto
+
+Une base de données pour le Web
+
+</template>
+
+<template layout="title" type="text/x-markdown">
+  # Vous construisez des applications JavaScript ?
+</template>
+
+<template layout="title" type="text/x-markdown">
+  # Vous construisez des backends python ?
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Nouvelle application web ?
+
+- Design d'API (Protocole);
+- Implémenter le service *(ex. Django REST framework)*
+- Implémenter le client JS *(ex. service AngularJS)*
+- Outiller ses serveurs *(ex. Sentry, Statsd)*
+- Déployer
+
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.9)">
+
+## Avec Kinto
+
+- Déployer un serveur Kinto
+- Intégrer Kinto.js
+
+-----------
+
+Besoin interne Mozilla
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Nouvelle app full JS?
+
+- Utiliser solution commerciale *(ex. Parse, Firebase)*
+- Intégrer SDK dans l'application *(stockage centralisé)*
+
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.9)">
+## Avec Kinto
+
+- Intégrer Kinto.js
+- Laisser l'utilisateur choisir l'emplacement de son serveur Kinto
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+![](./images/overview-deployonce-selfhost.png)
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.9)">
+
+## Bénéfices
+
+- Réutiliser le même serveur Kinto pour plusieurs applications.
+- Déployer applications en statique (GH Pages)
+- Retrouver le contrôle sur vos données.
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Collaboration — Avant
+
+- Utiliser solution commerciale et centralisée *(ex. Parse)*
+- Utiliser solution sans gestion fine des permissions *(ex. PouchDB)*
+
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.9)">
+## Avec Kinto
+
+- Créer un «bucket» spécifique sur une instance Kinto
+  ...ou donner les droits sur des enregistrements existants
+- Laisser l'utilisateur choisir l'emplacement de son serveur Kinto
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Synchronisation — Avant
+
+- Offline ? Plusieurs appareils ?
+- Intégrer PouchDB dans l'application
+- Déployer CouchDB dédié
+- Configurer les droits et les utilisateurs dans CouchDB
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.9)">
+## Avec Kinto
+
+- Intégrer kinto.js
+- Laisser utilisateur choisir l'emplacement de son serveur Kinto
+
+</template>
+
+<template layout="title" type="text/x-markdown">
+# Un peu d'histoire
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Genèse
+
+- **Avril 2012**: Rencontres Djangocong à Carnon-plage.  L'idée d'un backend générique et réutilisable émerge.
+- *Alexis imagine une solution concurent à Google Forms, Mathieu un moyen de faire des apps de carto sans déploiement.*
+- **2012-2014**: Les années Daybed. Quelques sprints avec Mathieu, Rémy et Alexis
+- **Été 2014**: Un jour par semaine alloué pour travailler sur Daybed a Mozilla
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Kinto
+
+
+- **Début 2015**: Reboot du projet suite au projet "readlinglist"
+- **Printemps**: création de Kinto.js
+- **Été 2015** : utilisation de Kinto et de son écosystème dans divers projets à Mozilla  *(OneCRL, Syncto)*
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+# «A lightweight JSON storage service with synchronisation and sharing abilities.»
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Mozilla: Capitaliser
+
+Nous sommes l'équipe «stockage» chez Mozilla
+
+- Ne pas tout réinventer à chaque nouvelle demande
+- Respecter les bonnes pratiques HTTP
+- Faciliter le travail des ops
+- Reprendre les bonnes idées de Firefox Sync
+</template>
+
+<template layout="code" type="text/x-markdown">
+
+## Idées de Firefox Sync
+
+```http
+
+```
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Communauté: Clé-en-main
+
+- Kinto est un produit
+- Simple et robuste *(pas de bleeding-edge technology)*
+- Facile à héberger
+- Intégration `kinto.js` triviale
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+# L'éco-système
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+## Mozilla: différents contextes
+
+- Instances dédiées et «Service to service» *(payments, software updates)*
+- Manipulation des données en Python via scripts *(security policies, ...)*
+- Client JavaScript *(ex. block lists, browser.html)*
+- Bridge Firefox Sync *(Firefox OS)*
+- Synchronisation application mobile *(Fennec)*
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+## Communauté: solution générique
+
+- Composants du serveur controllables depuis la configuration *(Authentication, persistence, cache, monitoring, etc.)*
+- Expérience développeur intégrée *des clients js, python, Java (Android) pour consommer l'API*
+- Extensions via plugins Pyramid *nos besoins internes ne sont pas necessairement ceux des autres*
+
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/privacy.jpg">
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Mozilla: intégrité et sécurité
+
+- Mises à jour Firefox: une «seule source de vérité»
+- Firefox Sync: données chiffrées par les clients
+- Payments: une application peut écrire, les clients peuvent lire leurs données
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Communauté: contrôle des données
+
+- Validation optionnelle du schéma des données
+- Chiffrement, jeu d'enfant ! *avec webcrypto et kinto.js*
+- Permissions → Instances mutualisées
+- Manipulation des objets et des permissions avec le client python
+
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.9)">
+# Ça va ?
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+![](./images/concepts-general.png)
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+![](./images/concepts-permissions.png)
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+## Démonstration
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+## À vous !
+
+- Serveur dev Mozilla
+- Kinto.js React Boilerplate
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+# Autohebergement
+
+- ``docker-compose XXX``
+- ou ``make serve``
+- Documentation hébergement
+- Packaging AlwaysData, Debian, Heroku, Bitnami (#help)
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+## Hebergement communautaire !
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+## Ailleurs
+
+- Parse, Firebase: logiciels privatifs centralisés
+- PouchDB: pas de permissions fines, serveur mutualisé délicat
+- OwnCloud, RemoteStorage: orientés fichiers
+- Cozy: Pas de multi utilisateurs
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Compatibilité
+
+- volonté de converger ou faire des ponts
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
+## Limitations:
+
+- Pas de modèle relationnel
+- Pas d'historique sur les enregsiterements
+
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/roadmap.jpg"
+          backface-filter="brightness(.9)">
+## Feuille de route
+
+- Ouverture et transparence
+- Blog-post driven development !
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## En cours
+
+- Recherche cobayes :)
+- Notifications *(Push, live sync)*
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Prévu
+
+- Support des fichiers
+- Découverte d'instances
+- Interface d'admin *(à-la Django Adminsite)*
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/merci.jpg"
+          backface-filter="brightness(.9)">
+## Merci
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Crédits
+
+- https://www.flickr.com/photos/kittysfotos/6362818709
+- https://www.flickr.com/photos/odalaigh/1482685365
+- https://www.flickr.com/photos/geezaweezer/5897955778
+- https://www.flickr.com/photos/kylaborg/12887906353
+</template>
+
+<script src="./dist/highlight.min.js"></script>
+<script src="./dist/talkie.js"></script>
+<script>
+var talkie = Talkie({wide: false});
+
+talkie.next.plug(talkie.control.keydown('s'));
+talkie.next.plug(talkie.control.keydown('n'));
+talkie.prev.plug(talkie.control.keydown('a'));
+talkie.prev.plug(talkie.control.keydown('p'));
+
+document.addEventListener('DOMContentLoaded', function() {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('[layout]'));
+  talkie.changed.onValue(function(current) {
+    console.clear();
+    // print presenter notes
+    console.info(talkie.notes[current.getAttribute('page')]);
+  });
+});
+</script>
+</body>
+</html>
