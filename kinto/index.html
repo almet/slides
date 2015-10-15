@@ -17,20 +17,33 @@
 
 Une base de données pour le Web
 
+*Alexis Métaireau — Mozilla*
 </template>
 
 <template layout="title" type="text/x-markdown">
-  # Vous construisez des applications JavaScript ?
+# Qui construit des applications JavaScript ?
+
 </template>
 
 <template layout="title" type="text/x-markdown">
-  # Vous construisez des backends python ?
+# Qui construit des backends python pour des Web apps?
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/boring.jpg"
+          backface-filter="brightness(1)">
+------
+
+Ça vous fatigue pas de refaire les choses à chaque fois ?
+
 </template>
 
 <template layout="bullets" type="text/x-markdown">
-## Nouvelle application web ?
+## Une nouvelle application web ?
 
-- Design d'API (Protocole);
+--------------
+
+- Design d'API (URLs et protocole);
 - Implémenter le service *(ex. Django REST framework)*
 - Implémenter le client JS *(ex. service AngularJS)*
 - Outiller ses serveurs *(ex. Sentry, Statsd)*
@@ -44,73 +57,21 @@ Une base de données pour le Web
 
 ## Avec Kinto
 
-- Déployer un serveur Kinto
-- Intégrer Kinto.js
+1. Déployez ou réutilisez une instance
+2. Intégrez Kinto.js
 
------------
-
-Besoin interne Mozilla
-</template>
-
-<template layout="bullets" type="text/x-markdown">
-## Nouvelle app full JS?
-
-- Utiliser solution commerciale *(ex. Parse, Firebase)*
-- Intégrer SDK dans l'application *(stockage centralisé)*
-
-</template>
-
-<template layout="bullets-invert" type="text/x-markdown"
-          backface="./images/future.jpg"
-          backface-filter="brightness(.9)">
-## Avec Kinto
-
-- Intégrer Kinto.js
-- Laisser l'utilisateur choisir l'emplacement de son serveur Kinto
 </template>
 
 <template layout="bullets" type="text/x-markdown">
 ![](./images/overview-deployonce-selfhost.png)
 </template>
 
-<template layout="bullets-invert" type="text/x-markdown"
-          backface="./images/future.jpg"
-          backface-filter="brightness(.9)">
-
-## Bénéfices
-
-- Réutiliser le même serveur Kinto pour plusieurs applications.
-- Déployer applications en statique *(Github Pages)*
-- Retrouver le contrôle sur vos données.
-
-</template>
-
 <template layout="bullets" type="text/x-markdown">
-## Collaboration — Avant
-
-- Utiliser solution commerciale et centralisée *(ex. Parse)*
-- Utiliser solution sans gestion fine des permissions *(ex. PouchDB)*
-
-</template>
-
-<template layout="bullets-invert" type="text/x-markdown"
-          backface="./images/future.jpg"
-          backface-filter="brightness(.9)">
-## Avec Kinto
-
-- Créer un «bucket» spécifique sur une instance Kinto
-  ...ou donner les droits sur des enregistrements existants
-- Laisser l'utilisateur choisir l'emplacement de son serveur Kinto
-
-</template>
-
-<template layout="bullets" type="text/x-markdown">
-## Synchronisation — Avant
+## Synchronisation et Collaboration
 
 - Offline ? Plusieurs appareils ?
-- Intégrer PouchDB dans l'application
-- Déployer CouchDB dédié
-- Configurer les droits et les utilisateurs dans CouchDB
+- Intégration de technologies héterogènes *(CouchDB)*
+- Utilisation de silos propriétaires *(Parse, Firebase)*
 </template>
 
 <template layout="bullets-invert" type="text/x-markdown"
@@ -118,9 +79,33 @@ Besoin interne Mozilla
           backface-filter="brightness(.9)">
 ## Avec Kinto
 
-- Intégrer kinto.js
-- Laisser utilisateur choisir l'emplacement de son serveur Kinto
+1. Déployez ou réutilisez une instance
+2. Intégrez Kinto.js
 
+</template>
+
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/goals.jpg"
+          backface-filter="brightness(.3)">
+## Objectifs
+
+- Dissocier l'application du backend
+- Ne plus déployer de backend ! *(Github pages)*
+- Laisser les utilisateurs choisir l'emplacement de leurs données.
+
+</template>
+
+<template layout="bullets" type="text/x-markdown"
+          backface="./images/horizon.jpg"
+          backface-filter="brightness(.9)">
+## Tour d'horizon des solutions existantes
+
+-----------
+
+- Parse / Firebase, mais open source
+- Discussions avec Michiel de remote storage
+- Discussions avec Dale, Nolan de pouchdb, Jan Lennart de CouchDB
+-> Conclusion: pas de gestion fine des permissions.
 </template>
 
 <template layout="bullets" type="text/x-markdown">
@@ -185,7 +170,9 @@ Nous sommes l'équipe «stockage» chez Mozilla
 </template>
 
 <template layout="bullets-invert" type="text/x-markdown"
-          backface="./images/ecosystem.jpg">
+          backface="./images/ecosystem.jpg"
+          backface-filter="brightness(.4)">
+## Ecosystème
 </template>
 
 <template layout="bullets" type="text/x-markdown"
@@ -266,25 +253,33 @@ Nous sommes l'équipe «stockage» chez Mozilla
 
 <template layout="code" type="text/x-markdown">
 
-- REST CRUD à chaque niveau
+```http
+PUT
+/v1/buckets/blog
+  /collections/articles
+    /records/89881454-e4e9-4ef0-99a9-404d95900352
+```
+```javascript
+{"data": {"title": "Présentation de Kinto"}}
 
-```perl
-PUT /v1/buckets/blog/collections/articles/records/89881454-e4e9-4ef0-99a9-404d95900352
-
-/buckets/{bucket_id}
-  /collections/{collection_id}
-    /records/{record_id}
 ```
 </template>
 
 
 <template layout="code" type="text/x-markdown">
 
-Bodu d'un POST / PUT avec:
+HTTP/1.1 200 OK
 
-- body
-- permissions
-
+```javascript
+{
+  "data": {
+      "title": "Présentation de Kinto",
+      "id": "89881454-e4e9-4ef0-99a9-404d95900352",
+      "last_modified": 1434647782623
+  },
+  "permissions": { "write": ["userid:VonkkVZo"] }
+}
+```
 </template>
 
 <template layout="bullets" type="text/x-markdown">
@@ -293,12 +288,30 @@ Bodu d'un POST / PUT avec:
 
 <template layout="code" type="text/x-markdown">
 
-Exemple d'erreur 400 ici
+```javascript
+{
+    "code": 400,
+    "details": [{
+        "description": "'title' is a required property",
+        "location": "body",
+        "name": "title"
+     }],
+    "errno": 107,
+    "error": "Invalid parameters",
+    "message": "'title' is a required property"
+}
+```
 
 </template>
 
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/offline.jpg"
+          backface-filter="brightness(.6)">
+## Offline first
+</template>
+
 <template layout="code" type="text/x-markdown">
-## Exemple de client Kinto.js
+## Exemple avec Kinto.js
 
 ```js
 const tasks = new Kinto({
@@ -314,10 +327,10 @@ tasks.create({label: "First item", done: false})
 
 # Auto-hébergement
 
-- ``docker-compose XXX``
-- ou ``make serve``
-- Documentation hébergement
-- Packaging AlwaysData, Debian, Heroku, Bitnami `#help`
+- ``docker run -p 8888:8888 kinto/kinto-server``
+- ou ``git clone; make serve``
+- cf. documentation pour la mise en production
+- `#help` Packaging AlwaysData, Debian, Heroku, Bitnami
 
 </template>
 
@@ -331,10 +344,13 @@ tasks.create({label: "First item", done: false})
 
 ## À vous !
 
-- Serveur dev Mozilla
-- Kinto.js React Boilerplate
+- Instance de dev: https://kinto.dev.mozaws.net/
+- [Kinto.js React Boilerplate](https://github.com/Kinto/kinto-react-boilerplate/)
+- **https://github.com/Kinto**
+
+----------
+
 - Recherche cobayes :)
-- https://github.com/Kinto/kinto
 
 </template>
 
@@ -342,25 +358,22 @@ tasks.create({label: "First item", done: false})
 
 ## Ailleurs
 
+---------------
+
 - Parse, Firebase: logiciels privatifs centralisés
 - PouchDB: pas de permissions fines, serveur mutualisé délicat
 - OwnCloud, RemoteStorage: orientés fichiers
 - Cozy: Pas de multi utilisateurs
+- Volonté de faire des ponts
 
 </template>
 
 <template layout="bullets" type="text/x-markdown">
-## Compatibilité
 
-- volonté de converger ou faire des ponts
-</template>
-
-<template layout="bullets" type="text/x-markdown">
-
-## Limitations:
+## Les limitations de Kinto
 
 - Pas de modèle relationnel
-- Pas d'historique sur les enregsiterements
+- Pas d'historique sur les enregistrements
 
 </template>
 
@@ -371,6 +384,7 @@ tasks.create({label: "First item", done: false})
 
 - Ouverture et transparence
 - Blog-post driven development !
+
 </template>
 
 <template layout="bullets" type="text/x-markdown">
@@ -391,10 +405,17 @@ tasks.create({label: "First item", done: false})
 <template layout="bullets" type="text/x-markdown">
 ## Crédits
 
-- https://www.flickr.com/photos/kittysfotos/6362818709
-- https://www.flickr.com/photos/odalaigh/1482685365
-- https://www.flickr.com/photos/geezaweezer/5897955778
-- https://www.flickr.com/photos/kylaborg/12887906353
+- [Hersson Piratoba, "¡Nube Voladora!"](https://www.flickr.com/photos/nossreh/16753088479)
+- [Gonzalo Merat, "Really Bored Kenzo"](https://www.flickr.com/photos/gonzalomerat/4852691103)
+- [Kitty Terwolbeck, "Half way looking at the road map"](https://www.flickr.com/photos/kittysfotos/6362818709)
+- [Charles Dawley, "Polaris - Star Trails Iridium flare"](https://www.flickr.com/photos/odalaigh/1482685365)
+- [Geraint Rowland, "Towards The Future (Oslo) Explored"](https://www.flickr.com/photos/geezaweezer/5897955778)
+- [KylaBorg, "Privacy"](https://www.flickr.com/photos/kylaborg/12887906353)
+- [Angie Torres, "Goal setting"](https://www.flickr.com/photos/angietorres/4564135455)
+- [Benjamin Disinger, "Horizon"](https://www.flickr.com/photos/bendisinger/15383035222)
+- [Uditha Wickramanayaka, "Love"](https://www.flickr.com/photos/126915310@N08/16332829367)
+- [Jeremy Brooks, "Products"](https://www.flickr.com/photos/jeremybrooks/5401494223)
+
 </template>
 
 <script src="./dist/highlight.min.js"></script>
