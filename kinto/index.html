@@ -104,8 +104,8 @@ Une base de données pour le Web
 
 - Parse / Firebase, mais open source
 - Discussions avec Michiel de remote storage
-- Discussions avec Dale, Nolan de pouchdb, Jan Lennart de CouchDB
--> Conclusion: pas de gestion fine des permissions.
+- Discussions avec Dale Harvey, Nolan Lawson de pouchdb, Jan Lennart de CouchDB
+-> Conclusion : pas de gestion fine des permissions.
 </template>
 
 <template layout="bullets" type="text/x-markdown">
@@ -122,19 +122,19 @@ Une base de données pour le Web
 <template layout="bullets" type="text/x-markdown">
 ## Genèse
 
-- **Avril 2012**: Rencontres Djangocong à Carnon-plage.  L'idée d'un backend générique et réutilisable émerge.
-- *Alexis imagine une solution concurent à Google Forms, Mathieu un moyen de faire des apps de carto sans déploiement.*
-- **2012-2014**: Les années Daybed. Quelques sprints avec Mathieu, Rémy et Alexis
-- **Été 2014**: Un jour par semaine alloué pour travailler sur Daybed a Mozilla
+- **Avril 2012** : Rencontres Djangocong à Carnon-plage.  L'idée d'un backend générique et réutilisable émerge.
+- *Alexis imagine une solution concurente à Google Forms, Mathieu un moyen de faire des apps de carto sans déploiement.*
+- **2012-2014** : Les années Daybed. Quelques sprints avec Mathieu, Rémy et Alexis
+- **Été 2014** : Un jour par semaine alloué pour travailler sur Daybed a Mozilla
 
 </template>
 
 <template layout="bullets" type="text/x-markdown">
 ## Kinto
 
-- **Début 2015**: Reboot du projet suite au projet "readlinglist"
-- **Printemps**: création de Kinto.js
-- **Été 2015** : utilisation de Kinto et de son écosystème dans divers projets à Mozilla  *(OneCRL, Syncto)*
+- **Début 2015** : Reboot du projet suite au projet "readlinglist"
+- **Printemps** : création de Kinto.js
+- **Été 2015**  : utilisation de Kinto et de son écosystème dans divers projets à Mozilla  *(OneCRL, Syncto)*
 
 </template>
 
@@ -142,8 +142,9 @@ Une base de données pour le Web
           backface="./images/product.jpg">
 </template>
 
-<template layout="bullets" type="text/x-markdown"
-          backface="./images/mozilla.jpg">
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/mozilla.jpg"
+          backface-filter="brightness(.5)">
 ## Capitaliser les efforts
 
 -----
@@ -156,8 +157,9 @@ Nous sommes l'équipe «stockage» chez Mozilla
 - Reprendre les bonnes idées de Firefox Sync
 </template>
 
-<template layout="bullets" type="text/x-markdown"
-          backface="./images/community.jpg">
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/community.jpg"
+          backface-filter="brightness(.5)">
 ## Créer un produit clé-en-main
 
 -----
@@ -175,8 +177,9 @@ Nous sommes l'équipe «stockage» chez Mozilla
 ## Ecosystème
 </template>
 
-<template layout="bullets" type="text/x-markdown"
-          backface="./images/mozilla.jpg">
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/mozilla.jpg"
+          backface-filter="brightness(.5)">
 
 ## Intégrer des besoins variés
 
@@ -189,8 +192,9 @@ Nous sommes l'équipe «stockage» chez Mozilla
 - Synchronisation application mobile *(Fennec)*
 </template>
 
-<template layout="bullets" type="text/x-markdown"
-          backface="./images/community.jpg">
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/community.jpg"
+          backface-filter="brightness(.5)">
 
 ## Enrichir un éco-système
 
@@ -206,20 +210,21 @@ Nous sommes l'équipe «stockage» chez Mozilla
           backface="./images/privacy.jpg">
 </template>
 
-<template layout="bullets" type="text/x-markdown"
-          backface="./images/mozilla.jpg">
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/mozilla.jpg"
+          backface-filter="brightness(.5)">
 
-## Garantir intégrité et sécurité
+## Garantir l'intégrité et la sécurité
 
 -----
 
-- Mises à jour Firefox: une «seule source de vérité»
-- Firefox Sync: données chiffrées par les clients
-- Payments: une application peut écrire, les clients peuvent lire leurs données
+- Firefox Sync : données chiffrées par les clients
+- Payments : une application peut écrire, les clients peuvent lire leurs données
 </template>
 
-<template layout="bullets" type="text/x-markdown"
-          backface="./images/community.jpg">
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/community.jpg"
+          backface-filter="brightness(.5)">
 
 ## Reprendre le contrôle sur les données
 
@@ -254,10 +259,10 @@ Nous sommes l'équipe «stockage» chez Mozilla
 <template layout="code" type="text/x-markdown">
 
 ```http
-PUT
+POST
 /v1/buckets/blog
   /collections/articles
-    /records/89881454-e4e9-4ef0-99a9-404d95900352
+    /records
 ```
 ```javascript
 {"data": {"title": "Présentation de Kinto"}}
@@ -268,7 +273,7 @@ PUT
 
 <template layout="code" type="text/x-markdown">
 
-HTTP/1.1 200 OK
+HTTP/1.1 201 CREATED
 
 ```javascript
 {
@@ -304,6 +309,11 @@ HTTP/1.1 200 OK
 
 </template>
 
+<template layout="code" type="text/x-markdown">
+# Batch endpoint
+
+</template>
+
 <template layout="bullets-invert" type="text/x-markdown"
           backface="./images/offline.jpg"
           backface-filter="brightness(.6)">
@@ -323,9 +333,11 @@ tasks.create({label: "First item", done: false})
 ```
 </template>
 
-<template layout="bullets" type="text/x-markdown">
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/autohebergement.jpg"
+          backface-filter="brightness(.4)">
 
-# Auto-hébergement
+# Hébérgement communautaire
 
 - ``docker run -p 8888:8888 kinto/kinto-server``
 - ou ``git clone; make serve``
@@ -336,17 +348,11 @@ tasks.create({label: "First item", done: false})
 
 <template layout="bullets" type="text/x-markdown">
 
-## Hebergement communautaire !
-
-</template>
-
-<template layout="bullets" type="text/x-markdown">
-
 ## À vous !
 
 - Instance de dev: https://kinto.dev.mozaws.net/
 - [Kinto.js React Boilerplate](https://github.com/Kinto/kinto-react-boilerplate/)
-- **https://github.com/Kinto**
+- https://kinto.readthedocs.org
 
 ----------
 
@@ -356,7 +362,7 @@ tasks.create({label: "First item", done: false})
 
 <template layout="bullets" type="text/x-markdown">
 
-## Ailleurs
+## Volonté de faire des ponts
 
 ---------------
 
@@ -384,6 +390,7 @@ tasks.create({label: "First item", done: false})
 
 - Ouverture et transparence
 - Blog-post driven development !
+- http://www.servicedenuages.fr
 
 </template>
 
@@ -412,11 +419,18 @@ tasks.create({label: "First item", done: false})
 - [Geraint Rowland, "Towards The Future (Oslo) Explored"](https://www.flickr.com/photos/geezaweezer/5897955778)
 - [KylaBorg, "Privacy"](https://www.flickr.com/photos/kylaborg/12887906353)
 - [Angie Torres, "Goal setting"](https://www.flickr.com/photos/angietorres/4564135455)
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+## Crédits ²
+
 - [Benjamin Disinger, "Horizon"](https://www.flickr.com/photos/bendisinger/15383035222)
 - [Uditha Wickramanayaka, "Love"](https://www.flickr.com/photos/126915310@N08/16332829367)
 - [Jeremy Brooks, "Products"](https://www.flickr.com/photos/jeremybrooks/5401494223)
 - [Nick Bramhall, "Light Pollution"](https://www.flickr.com/photos/black_friction/5628330687)
-
+- [Skånska Matupplevelser, "House, Autumn"](https://www.flickr.com/photos/matupplevelser/4644386646)
+- [Christoph Rupprecht, "Leaf Structure X1"](https://www.flickr.com/photos/focx/5485671820)
 </template>
 
 <script src="./dist/highlight.min.js"></script>
