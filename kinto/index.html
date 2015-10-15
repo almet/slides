@@ -80,7 +80,7 @@ Besoin interne Mozilla
 ## Bénéfices
 
 - Réutiliser le même serveur Kinto pour plusieurs applications.
-- Déployer applications en statique (GH Pages)
+- Déployer applications en statique *(Github Pages)*
 - Retrouver le contrôle sur vos données.
 
 </template>
@@ -123,6 +123,12 @@ Besoin interne Mozilla
 
 </template>
 
+<template layout="bullets" type="text/x-markdown">
+
+# «A lightweight JSON storage service with synchronisation and sharing abilities.»
+
+</template>
+
 <template layout="title" type="text/x-markdown">
 # Un peu d'histoire
 
@@ -141,21 +147,21 @@ Besoin interne Mozilla
 <template layout="bullets" type="text/x-markdown">
 ## Kinto
 
-
 - **Début 2015**: Reboot du projet suite au projet "readlinglist"
 - **Printemps**: création de Kinto.js
 - **Été 2015** : utilisation de Kinto et de son écosystème dans divers projets à Mozilla  *(OneCRL, Syncto)*
 
 </template>
 
-<template layout="bullets" type="text/x-markdown">
-
-# «A lightweight JSON storage service with synchronisation and sharing abilities.»
-
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/product.jpg">
 </template>
 
-<template layout="bullets" type="text/x-markdown">
-## Mozilla: Capitaliser
+<template layout="bullets" type="text/x-markdown"
+          backface="./images/mozilla.jpg">
+## Capitaliser les efforts
+
+-----
 
 Nous sommes l'équipe «stockage» chez Mozilla
 
@@ -165,17 +171,11 @@ Nous sommes l'équipe «stockage» chez Mozilla
 - Reprendre les bonnes idées de Firefox Sync
 </template>
 
-<template layout="code" type="text/x-markdown">
+<template layout="bullets" type="text/x-markdown"
+          backface="./images/community.jpg">
+## Créer un produit clé-en-main
 
-## Idées de Firefox Sync
-
-```http
-
-```
-</template>
-
-<template layout="bullets" type="text/x-markdown">
-## Communauté: Clé-en-main
+-----
 
 - Kinto est un produit
 - Simple et robuste *(pas de bleeding-edge technology)*
@@ -184,15 +184,16 @@ Nous sommes l'équipe «stockage» chez Mozilla
 
 </template>
 
-<template layout="bullets" type="text/x-markdown">
-
-# L'éco-système
-
+<template layout="bullets-invert" type="text/x-markdown"
+          backface="./images/ecosystem.jpg">
 </template>
 
-<template layout="bullets" type="text/x-markdown">
+<template layout="bullets" type="text/x-markdown"
+          backface="./images/mozilla.jpg">
 
-## Mozilla: différents contextes
+## Intégrer des besoins variés
+
+-----
 
 - Instances dédiées et «Service to service» *(payments, software updates)*
 - Manipulation des données en Python via scripts *(security policies, ...)*
@@ -201,9 +202,12 @@ Nous sommes l'équipe «stockage» chez Mozilla
 - Synchronisation application mobile *(Fennec)*
 </template>
 
-<template layout="bullets" type="text/x-markdown">
+<template layout="bullets" type="text/x-markdown"
+          backface="./images/community.jpg">
 
-## Communauté: solution générique
+## Enrichir un éco-système
+
+-----
 
 - Composants du serveur controllables depuis la configuration *(Authentication, persistence, cache, monitoring, etc.)*
 - Expérience développeur intégrée *des clients js, python, Java (Android) pour consommer l'API*
@@ -215,16 +219,24 @@ Nous sommes l'équipe «stockage» chez Mozilla
           backface="./images/privacy.jpg">
 </template>
 
-<template layout="bullets" type="text/x-markdown">
-## Mozilla: intégrité et sécurité
+<template layout="bullets" type="text/x-markdown"
+          backface="./images/mozilla.jpg">
+
+## Garantir intégrité et sécurité
+
+-----
 
 - Mises à jour Firefox: une «seule source de vérité»
 - Firefox Sync: données chiffrées par les clients
 - Payments: une application peut écrire, les clients peuvent lire leurs données
 </template>
 
-<template layout="bullets" type="text/x-markdown">
-## Communauté: contrôle des données
+<template layout="bullets" type="text/x-markdown"
+          backface="./images/community.jpg">
+
+## Reprendre le contrôle sur les données
+
+-----
 
 - Validation optionnelle du schéma des données
 - Chiffrement, jeu d'enfant ! *avec webcrypto et kinto.js*
@@ -254,14 +266,17 @@ Nous sommes l'équipe «stockage» chez Mozilla
 
 <template layout="code" type="text/x-markdown">
 
-Exemple d'erreur 400 ici
+- REST CRUD à chaque niveau
 
+```perl
+PUT /v1/buckets/blog/collections/articles/records/89881454-e4e9-4ef0-99a9-404d95900352
+
+/buckets/{bucket_id}
+  /collections/{collection_id}
+    /records/{record_id}
+```
 </template>
 
-
-<template layout="bullets" type="text/x-markdown">
-![](./images/concepts-permissions.png)
-</template>
 
 <template layout="code" type="text/x-markdown">
 
@@ -269,6 +284,16 @@ Bodu d'un POST / PUT avec:
 
 - body
 - permissions
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+![](./images/concepts-permissions.png)
+</template>
+
+<template layout="code" type="text/x-markdown">
+
+Exemple d'erreur 400 ici
 
 </template>
 
@@ -280,34 +305,19 @@ const tasks = new Kinto({
   remote: "https://kinto.dev.mozaws.net/v1"
 }).collection("tasks");
 
-tasks.add({label: "First item", done: false})
+tasks.create({label: "First item", done: false})
      .then(function() { tasks.sync() });
 ```
 </template>
 
 <template layout="bullets" type="text/x-markdown">
 
-## Démonstration
-
-</template>
-
-<template layout="bullets" type="text/x-markdown">
-
-## À vous !
-
-- Serveur dev Mozilla
-- Kinto.js React Boilerplate
-
-</template>
-
-<template layout="bullets" type="text/x-markdown">
-
-# Autohebergement
+# Auto-hébergement
 
 - ``docker-compose XXX``
 - ou ``make serve``
 - Documentation hébergement
-- Packaging AlwaysData, Debian, Heroku, Bitnami (#help)
+- Packaging AlwaysData, Debian, Heroku, Bitnami `#help`
 
 </template>
 
@@ -319,12 +329,24 @@ tasks.add({label: "First item", done: false})
 
 <template layout="bullets" type="text/x-markdown">
 
+## À vous !
+
+- Serveur dev Mozilla
+- Kinto.js React Boilerplate
+- Recherche cobayes :)
+- https://github.com/Kinto/kinto
+
+</template>
+
+<template layout="bullets" type="text/x-markdown">
+
 ## Ailleurs
 
 - Parse, Firebase: logiciels privatifs centralisés
 - PouchDB: pas de permissions fines, serveur mutualisé délicat
 - OwnCloud, RemoteStorage: orientés fichiers
 - Cozy: Pas de multi utilisateurs
+
 </template>
 
 <template layout="bullets" type="text/x-markdown">
@@ -352,15 +374,9 @@ tasks.add({label: "First item", done: false})
 </template>
 
 <template layout="bullets" type="text/x-markdown">
-## En cours
-
-- Recherche cobayes :)
-- Notifications *(Push, live sync)*
-</template>
-
-<template layout="bullets" type="text/x-markdown">
 ## Prévu
 
+- Notifications *(Push, live sync)*
 - Support des fichiers
 - Découverte d'instances
 - Interface d'admin *(à-la Django Adminsite)*
