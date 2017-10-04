@@ -1,0 +1,213 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>La brasserie du Vieux Singe</title>
+  <link rel="stylesheet" href="./dist/talkie.min.css">
+  <link rel="stylesheet" href="./dist/talkie-default.min.css">
+  <link rel="stylesheet" href="./dist/monokai_sublime.min.css">
+  <link rel="stylesheet" href="./dist/mozilla.css">
+</head>
+<body>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/intro.png"
+          backface-filter="brightness(1)">
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/horizon.jpg"
+          backface-filter="brightness(.6)">
+# Démarche générale
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/product.jpg"
+          backface-filter="brightness(.6)">
+# Produits
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/boring.jpg"
+          backface-filter="brightness(.6)">
+
+# Financier
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/engrenage.jpg"
+          backface-filter="brightness(.6)">
+
+# Choix techniques
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.6)">
+
+# Pour qui ?
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/conversation.jpg"
+          backface-filter="brightness(.6)">
+
+# Avec qui ?
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/roadmap.jpg"
+          backface-filter="brightness(.6)">
+
+# Notre vision de l'entreprise
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.6)">
+# Commercialisation
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.6)">
+# Distribution
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/future.jpg"
+          backface-filter="brightness(.6)">
+
+# Contexte économique
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/fred.jpg"
+          backface-filter="brightness(.6)">
+# Qui sommes nous ?
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/conversation.jpg"
+          backface-filter="brightness(.6)">
+
+
+# Expériences de collectif
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/offline.jpg"
+          backface-filter="brightness(.6)">
+
+# Nos valeurs
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/ecosystem.jpg"
+          backface-filter="brightness(.6)">
+# Collectif
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/goals.jpg"
+          backface-filter="brightness(.6)">
+
+# Avancement & planning
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/background.jpg"
+          backface-filter="brightness(.6)">
+# C'est quoi faire de la bière ?
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/engrenage.jpg"
+          backface-filter="brightness(.6)">
+# Choix techniques
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/horizon.jpg"
+          backface-filter="brightness(.6)">
+# Et la rocherais ?
+</template>
+
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/horizon.jpg"
+          backface-filter="brightness(.6)">
+
+## Avantages
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/horizon.jpg"
+          backface-filter="brightness(.6)">
+## Inconvénients
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/horizon.jpg"
+          backface-filter="brightness(.6)">
+
+## Collaborations souhaitées & limites
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/horizon.jpg"
+          backface-filter="brightness(.6)">
+
+
+## Craintes et doutes
+
+</template>
+
+<template layout="cover" invert type="text/x-markdown"
+          backface="./images/goals.jpg"
+          backface-filter="brightness(.6)">
+
+# les prochaines étapes
+
+</template>
+
+<script src="./dist/highlight.min.js"></script>
+<script src="./dist/talkie.js"></script>
+<script>
+var talkie = Talkie({wide: false});
+
+talkie.next.plug(talkie.control.keydown('s'));
+talkie.next.plug(talkie.control.keydown('n'));
+talkie.prev.plug(talkie.control.keydown('a'));
+talkie.prev.plug(talkie.control.keydown('p'));
+
+document.addEventListener('DOMContentLoaded', function() {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('[layout]'));
+  talkie.changed.onValue(function(current) {
+    console.clear();
+    // print presenter notes
+    console.info(talkie.notes[current.getAttribute('page')]);
+  });
+});
+</script>
+</body>
+</html>
