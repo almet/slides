@@ -42,8 +42,6 @@ A tool to render any document into a harmless document.
 
 The sandbox is where potentially dangerous documents are processed safely.
 
-<img src="/assets/dangerzone-outline.svg" width="60%"/>
-
 <v-clicks>
 
 - **A container** - Isolated environment
@@ -81,23 +79,6 @@ Dangerzone releases take significant work:</v-click>
 <v-click><li>Users tend to lag behind</li></v-click>
 
 ---
-layout: image-right
-image: /assets/trust.jpg
----
-
-# Problem #1 (continued)
-
-**We don't prevent supply chain attacks**
-
-<v-clicks>
-
-- We have to trust our build machines
-  - An attacker can make sublte changes to our build environment, leading to us shipping malicious software.
-- An attacker could steal our key and use it without us knowning
-
-</v-clicks>
-
----
 
 # Solution #1: Auto-updating sandbox
 
@@ -114,11 +95,16 @@ flowchart LR
 
 <v-clicks>
 
+- Avoiding supply-chain attacks
 - **Signed with FPF-owned keys** - You can trust the source
 - **Reproducible builds** - Anyone can verify the container matches the source
 - **Auditable** - signatures are uploaded to an external log
 
 </v-clicks>
+
+---
+
+![Capture of Dangerzone asking for auto updates](/assets/enable-updates.png)
 
 ---
 layout: center
@@ -180,8 +166,28 @@ This creates issues:
 
 - Another installation step for users
 - Needs to be kept up to date to avoid exploits
-- Docker Desktop mounts the host File System
 - Licensing concerns (Docker Desktop is not open source)
+
+</v-clicks>
+
+---
+
+# And also...
+
+Docker is its own beast:
+
+```
+$ docker desktop start
+Docker Desktop is already running
+$ docker desktop status
+Could not retrieve status. Is Docker Desktop running?
+You can start Docker Desktop by running 'docker desktop start'.
+```
+
+<v-clicks>
+
+- We've had two emergency releases in the past due to Docker
+- "It asked for it"
 
 </v-clicks>
 
@@ -209,6 +215,12 @@ We're embedding Podman directly in our macOS and Windows builds!
 layout: center
 ---
 
+<img src="/assets/dangerzone-ui.jpg" width="50%" />
+
+---
+layout: center
+---
+
 # Help us test!
 
 We need your help testing these new features.
@@ -218,16 +230,7 @@ We need your help testing these new features.
 - Embedding Podman results in quite large packages:
   -  `.dmg` is 1.8Gib
   -  `.msi` is 1.2Gib
-- → https://github.com/freedomofpress/dangerzone/releases/tag/v0.10.0-rc1
-
----
-layout: center
----
-
-# Help us test!
-https://github.com/freedomofpress/dangerzone/releases/tag/v0.10.0-rc1
-
-<img src="/assets/dangerzone-ui.jpg" width="50%" />
+- → [https://github.com/freedomofpress/dangerzone/releases/tag/v0.10.0-rc1](https://github.com/freedomofpress/dangerzone/releases/tag/v0.10.0-rc1)
 
 ---
 layout: image-left
