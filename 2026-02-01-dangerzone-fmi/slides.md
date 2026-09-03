@@ -10,10 +10,6 @@ transition: slide-left
 
 **Ouvrir des documents en toute sécurité**
 
-Alexis Métaireau, Freedom of the Press Foundation
-
-Atelier Festival des Médias Indépendants - Avril 26
-
 ---
 
 # Qui suis-je ?
@@ -24,6 +20,7 @@ Atelier Festival des Médias Indépendants - Avril 26
 - Développeur logiciel à la **Freedom of the Press Foundation** (FPF)
 - Je travaille sur **Dangerzone** et d'autres outils pour journalistes et sources
 - Développeur open source
+- Je vis dans le sud de Rennes
 
 </v-clicks>
 
@@ -142,7 +139,7 @@ Quand un document a trahi sa source…
 - 2012 : John McAfee est en cavale, interviewé par des journalistes de *Vice*
 - Ils publient une photo prise avec un iPhone
 - Les **coordonnées GPS** étaient dans les métadonnées EXIF
-- Sa cachette au Guatemala est révélée en quelques heures
+- Sa cachette au Guatemala est révélée
 
 </v-clicks>
 
@@ -161,14 +158,14 @@ https://wired.com/2012/12/oops-did-vice-just-give-away-john-mcafees-location-wit
 
 <v-clicks>
 
-- 2008 : Google dépose un document **anonyme** auprès du régulateur australien
+- 2008 : Google dépose un document **anonymement** auprès du régulateur australien
 - Les **métadonnées** du PDF contiennent le nom de l'auteur
 - On y voit clairement que Google est l'auteur
 
 </v-clicks>
 
 <div class="text-xs opacity-60 mt-2">
-theregister.com/2008/05/30/metadata_ruins_google_accc_filing/
+https://theregister.com/2008/05/30/metadata_ruins_google_accc_filing/
 </div>
 
 ---
@@ -189,7 +186,7 @@ theregister.com/2008/05/30/metadata_ruins_google_accc_filing/
 </v-clicks>
 
 <div class="text-xs opacity-60 mt-2">
-theverge.com/2023/6/28/23777298/sony-ftc-microsoft-confidential-documents-marker-pen-scanner
+https://theverge.com/2023/6/28/23777298/sony-ftc-microsoft-confidential-documents-marker-pen-scanner
 </div>
 
 ---
@@ -206,12 +203,13 @@ theverge.com/2023/6/28/23777298/sony-ftc-microsoft-confidential-documents-marker
 - 2017 : *The Intercept* publie un document secret de la NSA
 - Le document avait été **imprimé puis scanné** par la source
 - Les imprimantes laser ajoutent des **points jaunes invisibles** (*tracking dots*)
-- Ces points identifient l'imprimante et l'heure → Reality Winner est arrêtée
+- Ces points identifient l'imprimante et l'heure.
+- "Reality Winner" est arrêtée
 
 </v-clicks>
 
 <div class="text-xs opacity-60 mt-2">
-theatlantic.com/technology/archive/2017/06/the-mysterious-printer-code-that-could-have-led-the-fbi-to-reality-winner/
+https://theatlantic.com/technology/archive/2017/06/the-mysterious-printer-code-that-could-have-led-the-fbi-to-reality-winner/
 </div>
 
 ---
@@ -226,9 +224,9 @@ theatlantic.com/technology/archive/2017/06/the-mysterious-printer-code-that-coul
 <v-clicks>
 
 - Il est possible d'insérer des **filigranes invisibles** dans les documents
-- Certaines plateformes proposent cela comme service
+- Certaines plateformes proposent ce service
 - Espacements de mots, tournures de phrases, pixels altérés…
-- Chaque copie distribuée peut être **unique** → la fuite peut être tracée jusqu'à la source
+- Chaque copie distribuée peut être **unique**, permet de tracer la fuite
 
 </v-clicks>
 
@@ -243,15 +241,15 @@ theatlantic.com/technology/archive/2017/06/the-mysterious-printer-code-that-coul
 
 <v-clicks>
 
-- Une fan (« sasaeng ») a retrouvé l'adresse d'une idole japonaise
-- En zoomant sur le **reflet dans ses yeux** sur une photo publiée en ligne
+- Un fan a retrouvé l'adresse d'une idole japonaise
+- En zoomant sur le **reflet dans ses yeux** sur une photo publiée dans les médias sociaux
 - Caméras et micros capturent **tout l'environnement** autour du sujet
 - Reflets, bruits de fond, paysages, objets : **autant d'indices** qui peuvent trahir un lieu ou une personne
 
 </v-clicks>
 
 <div class="text-xs opacity-60 mt-2">
-koreaboo.com/stories/matsuoka-ena-sasaeng-obsessed-fan-idol-stalker-photo-eyes-reflection/
+https://koreaboo.com/stories/matsuoka-ena-sasaeng-obsessed-fan-idol-stalker-photo-eyes-reflection/
 </div>
 
 ---
@@ -266,11 +264,11 @@ layout: center
 
 <v-clicks>
 
-- **Exiftool** — supprime les métadonnées des images et PDF
+- **Exiftool**, supprime les métadonnées des images et PDF
   - Rapide, mais **laisse des traces** et **ne protège pas contre les malwares**
-- **MAT2** — plus complet, gère de nombreux formats
+- **MAT2**, plus complet, gère de nombreux formats
   - Bon pour beaucoup de cas, mais **ne protège pas non plus contre les malwares**
-- **Dangerzone** — approche radicale : le document est **reconstruit à partir de zéro**
+- **Dangerzone**, approche radicale : le document est **reconstruit à partir de zéro**
   - Lent, mais **neutralise les malwares** et supprime la plupart des métadonnées
 
 </v-clicks>
@@ -305,11 +303,9 @@ layout: two-cols-header
 
 ::left::
 
-<img src="https://raw.githubusercontent.com/freedomofpress/dangerzone/main/install/common/dangerzone.png" width="180"/>
+<img src="/assets/dangerzone-logo.png" width="180"/>
 
 ::right::
-
-<v-clicks>
 
 - Supporte de nombreux formats (PDF, Word, Excel, images…)
 - Disponible sur **Windows**, **macOS** et **Linux**
@@ -317,8 +313,6 @@ layout: two-cols-header
 - Conçu d'abord pour neutraliser les **documents piégés**
 - Effet secondaire bienvenu : **supprime aussi les métadonnées**
 - Maintenu par la Freedom of the Press Foundation
-
-</v-clicks>
 
 <div class="text-xs opacity-60 mt-4">
 https://dangerzone.rocks/
@@ -366,7 +360,7 @@ https://dangerzone.rocks/
       <div class="font-bold mt-3">PDF sain</div>
       <div class="mt-1 text-sm">
         <span class="bg-orange-500 text-white px-2 py-1 font-bold rounded">4</span>
-        Reconstruit à partir des pixels
+        Reconstruit à partir des pixels + OCR*
       </div>
     </v-click>
   </div>
@@ -374,7 +368,7 @@ https://dangerzone.rocks/
   <div class="text-center">
     <v-click at="4">
       <div class="text-5xl">←</div>
-      <div class="italic text-xs mt-2 opacity-70">Le « trou analogique »</div>
+      <div class="italic text-xs mt-2 opacity-70">Capture analogique</div>
     </v-click>
   </div>
 
@@ -416,3 +410,9 @@ layout: center
 🐘 [social.freedom.press/@dangerzone](https://social.freedom.press/@dangerzone)
 
 </div>
+
+<style>
+#slidev-goto-dialog {
+  display: none !important;
+}
+</style>
